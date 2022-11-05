@@ -1,0 +1,73 @@
+nitch
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"  ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Set up the prompt
+[[ $- != *i* ]] && return
+
+# Vim behavior
+bindkey -v
+export KEYTIMEOUT=1
+
+# Enable searching through history
+bindkey '^R' history-incremental-pattern-search-backward
+
+# Environment variables
+export LESSHISTFILE=/dev/null
+LESS="-R -I"; export LESS
+export TERM="xterm-256color"
+
+# Config ZSH
+# zstyle :omz:plugins:ssh-agent agent-forwarding on
+# zstyle :omz:plugins:ssh-agent lifetime 2h
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+setopt histignorealldups sharehistory
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.cache/zsh/zsh_history
+
+# Plugins (TODO)
+plugins=(
+  colored-man-pages
+  zsh-256color
+  fast-syntax-highlighting
+)
+
+# PLUGINS
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+# THEME
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# Load environment variables
+# [[ -f ~/.profile ]] && . ~/.profile
+
+# Load aliases and functions
+[[ -f ~/.config/zsh/aliases ]] && . ~/.config/zsh/aliases
+[[ -f ~/.config/zsh/functions ]] && . ~/.config/zsh/functions
+
+# Load powerlevel10k customizations
+[[ -f ~/.config/zsh/p10k.zsh ]] && source ~/.config/zsh/p10k.zsh
+
+# Auto start tmux on SSH only
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+function dne() { notify-send "DONE !" }
+function cd() { builtin cd "$@" && ls --group-directories-first }

@@ -1,0 +1,29 @@
+#!/bin/sh
+# Changes the background to a new random one.
+
+# Path to the wallpapers
+folder="/home/${USER}/Pictures/wallpapers/"
+
+if [ -z "$1" ]
+then
+  to_display="$folder""`ls $folder | shuf | head -n1`"
+elif  [ -f "$1" ] && [ ! -f "${folder}${1}" ]
+then
+  # If given in argument, add it to the wallpaper folder and we'll use this one.
+  cp "$1" ~/Pictures/wallpapers/ && notify-send -i "$1" "Wallpaper added."
+  to_display=$1
+else
+  to_display=$1
+fi
+
+# Export the environment variables related to the screen (IMPORTANT!)
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; export DISPLAY=:0; . $HOME/.profile;
+
+# Update the current wallpaper
+xwallpaper --maximize $to_display
+
+# Save current file name for removing
+echo "$to_display" > /home/${USER}/.local/scripts/.currentbg
+
+# Exit
+exit 0

@@ -1,0 +1,36 @@
+# General aliases
+alias co="git checkout"
+alias cat="bat"
+alias diff="diff --color=auto"
+alias gui="xdg-open ."
+alias grep="grep --color=auto"
+alias htb="sudo openvpn --config ~/Hax/HTB/User420.ovpn"
+alias htb-fortress="sudo openvpn --config ~/Hax/HTB/User420-fortress.ovpn"
+alias thm="sudo openvpn --config ~/Hax/THM/User420.ovpn"
+# alias lesss='less -S -I'
+alias ls="ls --color=auto"
+alias la="ls -lah"
+alias ll="ls -lh"
+alias nano='vim'
+alias sv="sudoedit"
+alias sz="source ~/.zshrc"
+alias vz="vim ~/.zshrc"
+alias vn="vim ~/.vimrc"
+alias sn="shutdown now"
+
+alias ..="cd .."
+
+# Letter Aliases
+alias b="bluetoothctl"
+alias e="evince"
+alias f="git fetch -vvv"
+alias g="git"
+alias l="ls"
+alias m="ncmpcpp"
+alias p="ping 8.8.8.8"
+alias q="exit"
+alias r="ranger"
+alias s="git status --short"
+alias v="nvim"
+alias z="zathura"
+

@@ -1,0 +1,6 @@
+configuration {
+  icon-theme: "obsidian";
+  show-icons: true;
+}
+@theme "~/.local/share/rofi/themes/spotlight-dark.rasi"
+

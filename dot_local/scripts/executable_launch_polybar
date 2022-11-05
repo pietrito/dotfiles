@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Kill em all
+# killall -q polybar
+# Kill em all softly
+polybar-msg cmd quit
+
+# Wait till they're dead
+while pgrep -u $UID -x polybar 2>/dev/null
+do
+  sleep 1
+done
+
+# Launch
+polybar -q top 2>/dev/null & disown
+
+monitor_list=$(polybar --list-monitors)
+# 1st external monitor (TOP-LEFT)
+is_hdmi=$(echo "$monitor_list"|grep 'HDMI1')
+if [ ! -z "$is_hdmi" ]
+then
+  polybar -q top-HDMI1 2>/dev/null & disown
+fi
+
+# 2nd external monitor (TOP-RIGHT)
+is_dp=$(echo "$monitor_list" | grep 'DP1')
+if [ ! -z "$is_dp" ]
+then
+  polybar -q top-DP1 2>/dev/null & disown
+fi
+
