@@ -1,0 +1,71 @@
+;; vim:filetype=dosini
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[color]
+
+;; main colors
+background = #282828
+background-alt = #D4CFC1
+foreground = #E5D5AE
+foreground-alt = #808080
+primary = #BB553F
+
+#282828
+ #black: '#282828'
+  #  red: '#cc241d'
+  # green: '#98971a'
+  #  yellow: '#d79921'
+   # blue: '#458588'
+  #  magenta: '#b16286'
+  #  cyan: '#689d6a'
+  #  white: '#a89984'
+
+#background = #24283B
+#background-alt = #282828
+#foreground = #9CA5CA
+#foreground-alt = #808080
+#primary = #61AEFE
+#alpha = #00000000
+
+
+
+#black = #000000
+#white = #FFFFFF
+#red = #e06c75
+#green = #98c379
+#yellow = #e5c07b
+#blue = #61afef
+#purple = #c678dd
+#cyan = #56b6c2
+
+black   = #1D202F
+red     = #F7768E
+green   = #9ECE6A
+yellow  = #E0AF68
+blue    = #7AA2F7
+magenta = #BB9AF7
+cyan    = #7DCFFF
+white   = #A9B1D6
+
+
+green_spotify = #1DB954
+lightgrey = #666
+blue_bluetooth = #3b5998
+darkblue = #0099ff
+lightgreen = #19FF3C
+accent = #e60053
+pink = #ff66cc
+darkgrey = #333333
+brown = #996633
+alert = #bd2c40
+bordercolor = #333
+# foreground = #eee
+background_bar = #222
+label_background = #383838
+label_foreground = #fff
+urgent = #bd2c40
+linecolor = #fba922
+orange = #ff6600
+theme_accent = ${self.orange}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
