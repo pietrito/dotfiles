@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Kill em all
-# killall -q polybar
+killall -q polybar
 # Kill em all softly
-polybar-msg cmd quit
+# polybar-msg cmd quit
 
 # Wait till they're dead
 while pgrep -u $UID -x polybar 2>/dev/null
