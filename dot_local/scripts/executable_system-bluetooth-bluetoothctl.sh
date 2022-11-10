@@ -7,12 +7,11 @@ bluetooth_print() {
     bluetoothctl | while read -r; do
 
       if [ "$(systemctl is-active "bluetooth.service")" = "active" ]; then
-        # Modified here to use hcitool to tell bluetooth is actually powered ON or not
         if [ ! -z "$(/usr/bin/bluetoothctl show | grep 'Powered: yes')" ]; then
           counter=0
-          devices_paired=$(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
+          devices_paired=$(bluetoothctl devices Paired | grep Device | cut -d ' ' -f 2)
 
-          echo "$devices_paired" | while read -r line; do
+           while read -r line; do
               device_info=$(bluetoothctl info "$line")
 
               if echo "$device_info" | grep -q "Connected: yes"; then
@@ -21,12 +20,12 @@ bluetooth_print() {
                   if [ $counter -gt 0 ]; then
                       printf ", %s" "$device_alias"
                   else
-                      printf " %s" "$device_alias"
+                      printf "%s" "$device_alias"
                   fi
 
                   counter=$((counter+1))
               fi
-          done
+          done <<<$(echo "$devices_paired")
 
           if [ $counter -eq 0 ]
           then
