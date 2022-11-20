@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+PLAYER="spotify"
+
+# Next
+if [ $# -eq 1 ]
+then
+  # Next
+  if [ $1 = "next" ]
+  then
+    playerctl -p $PLAYER next
+
+  # Previous
+  elif [ $1 = "prev" ]
+  then
+    playerctl -p $PLAYER previous
+
+  # Pause
+  elif [ $1 = "paus" ]
+  then
+    playerctl -p $PLAYER pause
+
+  # Play/Pause toggle
+  elif [ $1 = "plpa" ]
+  then
+    playerctl -p $PLAYER play-pause
+  fi
+fi
+
+# giving time for playerctl to update
+# sleep 1
+
+txt=$(playerctl -p $PLAYER metadata --format "{{ title }} - {{ artist }}" 2>/dev/null)
+
+# Nothing
+if [ $? != 0 ]
+then
+  echo -n ""
+elif [ $(playerctl -p $PLAYER status) = "Playing" ]
+then
+  echo -n " $txt"
+elif [ $(playerctl -p $PLAYER status) = "Paused" ]
+then
+  echo -n ""
+fi

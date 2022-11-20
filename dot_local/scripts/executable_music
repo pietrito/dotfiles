@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ `mpc status | grep playing | wc -l` = "1" ]
+then
+  # mpcer $* && pkill -RTMIN+11 i3blocks
+  mpcer $*
+elif [ $(playerctl -p spotify status | grep -i playing | wc -l) = "1" ]
+then
+  # python ~/.scripts/polybar/spotify_status.py
+  spotifier $*
+else
+  mpc play
+fi
+
+

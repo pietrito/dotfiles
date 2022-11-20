@@ -1,0 +1,56 @@
+#!/bin/sh
+
+filter() {
+	# sed "/^volume:/d" | tac | sed -e "s/\\&/&amp;/g;s/\\[paused\\].*/<span color=\"gray\" font_style=\"italic\">/g;s/\\[playing\\].*/<span>/g" | tr -d '\n' | sed -e "s/$/<\\/span>/g"
+	sed "/^volume:/d" | tac | sed -e "s/\\&/&amp;/g;s/\\[paused\\].*//g;s/\\[playing\\].*//g" | tr -d '\n' | sed -e "s/$//g"
+	}
+
+is_playing() {
+  echo "$@" | grep -i "playing" && return 1
+  return 0
+}
+
+if [ $# -eq 1 ]
+then
+  # Next
+  if [ $1 = "next" ]
+  then
+    mpc next
+
+  # Previous
+  elif [ $1 = "prev" ]
+  then
+    mpc prev
+
+  # Pause
+  elif [ $1 = "paus" ]
+  then
+    mpc pause
+
+  # Play
+  elif [ $1 = "play" ]
+  then
+    mpc play
+
+  # Play/Pause toggle
+  elif [ $1 = "plpa" ]
+  then
+    mpc toggle
+  fi
+fi
+
+stat=$(mpc | grep -io "paused\|playing" | sed -e "s/paused/0/g;s/playing/1/g")
+
+if [ -z $stat ]
+then
+  echo -n ""
+elif [ $stat -eq 1 ]
+then
+  echo -n " $(mpc | head -n 1)"
+elif [ $stat -eq 0 ]
+then
+  echo -n ""
+else
+  echo -n ""
+fi
+
