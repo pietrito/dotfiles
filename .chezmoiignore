@@ -1,0 +1,5 @@
+README.md
+TODO.md
+{{- if ne .chezmoi.hostname "WIN-EDU-024"}}
+.config/awesome/
+{{- end }}
