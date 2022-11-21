@@ -1,3 +1,8 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
 # General aliases
 alias co="git checkout"
 alias cat="bat"
@@ -17,6 +22,23 @@ alias sz="source ~/.zshrc"
 alias vz="vim ~/.zshrc"
 alias vn="vim ~/.vimrc"
 alias sn="shutdown now"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	bc="bc -ql" \
+	mkdir="mkdir -pv" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
 
 alias ..="cd .."
 
