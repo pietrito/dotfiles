@@ -1,29 +1,34 @@
 #!/bin/sh
-# Changes the background to a new random one.
+
+#
+# This script is used to change the background to a new one.
+# If given a file, sets it and adds it in the wallpapers folder. Otherwise, choose a random one.
+#
+# Note: Chooses a random monitor between all the active ones.
+#
 
 # Path to the wallpapers
-folder="/home/${USER}/Pictures/wallpapers/"
+folder="${HOME}/.local/share/wallpapers/"
 
-if [ -z "$1" ]
+# If given an existing file in argument, add it to the wallpaper folder and we'll use this one.
+if [ -f "$1" ] && [ ! -f "${folder}${1}" ]
 then
-  to_display="$folder""`ls $folder | shuf | head -n1`"
-elif  [ -f "$1" ] && [ ! -f "${folder}${1}" ]
-then
-  # If given in argument, add it to the wallpaper folder and we'll use this one.
-  cp "$1" ~/Pictures/wallpapers/ && notify-send -i "$1" "Wallpaper added."
+  cp "$1" "$folder" && notify-send -i "$1" "Wallpaper added."
   to_display=$1
 else
-  to_display=$1
+  # Else if no (or invalid) file given, choose a random one
+  to_display=$(find "$folder" -type f | shuf -n 1)
 fi
 
-# Export the environment variables related to the screen (IMPORTANT!)
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; export DISPLAY=:0; . $HOME/.profile;
+# Choose a random monitor to change the wallpaper only on that one
+monitor=$(xrandr --listactivemonitors | grep '^ [[:digit:]]' | awk '{print $NF}' | shuf -n 1)
 
-# Update the current wallpaper
-xwallpaper --maximize $to_display
+# Update the wallpaper on the selected monitor
+xwallpaper --output "$monitor" --maximize $to_display
 
-# Save current file name for removing
-echo "$to_display" > /home/${USER}/.local/scripts/.currentbg
+# Save current file name for potential removal
+# TODO: Handle multiple monitor ?
+echo "$to_display" > ${HOME}/.local/scripts/.currentbg
 
 # Exit
 exit 0
