@@ -1,4 +1,4 @@
-; vim:filetype=dosini
+;; vim:filetype=dosini
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 [bar-defaults]
 ; Inter process communication is enabled by default
@@ -24,8 +24,6 @@ border-color = #00000000
 ; border-bottom-color = ${color.underline_color}
 
 ; Fonts
-font-0 = "Dina:style=Regular:pixelsize=17;3"
-font-1 = "Hack Nerd Font Mono:style=Regular:size=15;4"
 
 ; System tray icons
 tray-position = right
@@ -42,6 +40,8 @@ modules-left = arch-menu workspaces mpd spotify
 [bar/top]
 ; Inherit defaults bar settings
 inherit = bar-defaults
+font-0 = "Dina:style=Regular:pixelsize=17;3"
+font-1 = "Hack Nerd Font Mono:style=Regular:size=15;4"
 ; This bar is for the laptop screen itself
 monitor = ${env:MONITOR:eDP1}
 monitor-strict = true
@@ -54,11 +54,35 @@ border-size = 3
 modules-right = memory fs-root xkeyboard xbacklight pulseaudio arch-updates bluetooth wifi wired battery date
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-[bar/top-HDMI1]
+[bar/top-HDMI0]
 ; Inherit defaults bar settings
 inherit = bar-defaults
+font-0 = "Dina:style=Regular:pixelsize=15;3"
+font-1 = "Hack Nerd Font Mono:style=Regular:size=12;4"
 ; These settings are for the HDMI1 screen
-monitor = ${env:MONITOR:HDMI1}
-monitor-strict = true
+monitor = ${env:MONITOR:HDMI-0}
+monitor-strict = false
+height = 24
+border-size = 3
+
 # modules-center = i3-window-HDMI1
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+[bar/top-DP2]
+; Inherit defaults bar settings
+inherit = bar-defaults
+font-0 = "Dina:style=Regular:pixelsize=15;3"
+font-1 = "Hack Nerd Font Mono:style=Regular:size=12;4"
+; This bar is for the laptop screen itself
+monitor = ${env:MONITOR:DP-2}
+monitor-strict = true
+; Override height (smaller screen)
+height = 24
+border-size = 3
+
+# modules-center = i3-window-eDP1
+
+# TODO: system-usb-udev
+modules-right = memory fs-root xkeyboard pipewire arch-updates bluetooth wifi wired date
+; Common modules for all bars
+modules-left = arch-menu workspaces
 

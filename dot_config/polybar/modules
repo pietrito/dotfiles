@@ -284,6 +284,21 @@ ramp-volume-foreground = ${color.brown}
 # sink = alsa_output.pci-0000_00_1b.0.analog-stereo
 
 ; ---------------------------------------------------------
+[module/pipewire]
+type = custom/script
+exec = ~/.local/scripts/polybar/pipewire-simple.sh
+
+interval = 1
+
+format-padding = 1
+format-underline = ${color.brown}
+
+click-right = exec pavucontrol &
+click-left = ~/.local/scripts/polybar/pipewire-simple.sh --mute &
+scroll-up = ~/.local/scripts/polybar/pipewire-simple.sh --up &
+scroll-down = ~/.local/scripts/polybar/pipewire-simple.sh --down &
+
+; ---------------------------------------------------------
 [fs-base]
 type = internal/fs
 
@@ -621,7 +636,7 @@ label-indicator-on-background = ${color.accent}
 ; ---------------------------------------------------------
 [module/arch-updates]
 type = custom/script
-exec = ~/.local/scripts/updates-arch-combined.sh
+exec = ~/.local/scripts/polybar/updates-arch-combined.sh
 interval = 600
 
 ; click-left = nohup st -e update > /dev/null & disown
@@ -636,7 +651,7 @@ label = %output%
 ; ---------------------------------------------------------
 [module/bluetooth]
 type = custom/script
-exec = ~/.local/scripts/system-bluetooth-bluetoothctl.sh
+exec = ~/.local/scripts/polybar/system-bluetooth-bluetoothctl.sh
 tail = true
 
 format-underline = ${color.blue_bluetooth}
@@ -647,17 +662,17 @@ format-prefix-foreground = ${color.blue_bluetooth}
 
 label = %output%
 
-click-left = ~/.local/scripts/system-bluetooth-bluetoothctl.sh --toggle &
+click-left = ~/.local/scripts/polybar/system-bluetooth-bluetoothctl.sh --toggle &
 
 ; ---------------------------------------------------------
 [module/system-usb-udev]
 type = custom/script
-exec = ~/.local/scripts/system-usb-udev.sh
+exec = ~/.local/scripts/polybar/system-usb-udev.sh
 tail = true
 
 format-underline = ${color.cyan}
 format-prefix = "禍"
 format-prefix-foreground = ${color.cyan}
 
-click-left = ~/.local/scripts/system-usb-udev.sh --mount &
-click-right = ~/.local/scripts/system-usb-udev.sh --unmount &
+click-left = ~/.local/scripts/polybar/system-usb-udev.sh --mount &
+click-right = ~/.local/scripts/polybar/system-usb-udev.sh --unmount &
