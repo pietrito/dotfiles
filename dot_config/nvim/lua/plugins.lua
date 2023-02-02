@@ -17,6 +17,7 @@ return require('packer').startup(function(use)
 
     -- Project navigation
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = {{'nvim-lua/plenary.nvim'}}}
+    use 'nvim-tree/nvim-web-devicons'
 
     -- ?
     use 'nvim-treesitter/nvim-treesitter'
@@ -68,5 +69,10 @@ return require('packer').startup(function(use)
     use 'itchyny/lightline.vim'
 
     use 'rust-lang/rust.vim'
+
+    use 'tpope/vim-surround' -- Add "", '', (),
+
+    -- Adds support for pretty TODO
+    use 'folke/todo-comments.nvim'
 
 end)

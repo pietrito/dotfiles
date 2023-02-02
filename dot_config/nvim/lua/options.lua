@@ -22,6 +22,12 @@ set.softtabstop = 0
 set.expandtab = true
 set.shiftwidth = 2
 set.smarttab = true
+set.scrolloff=10
+--}}}
+
+--{{{ Case insensitive search
+set.ignorecase = true
+set.smartcase = true
 --}}}
 
 
