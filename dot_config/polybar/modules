@@ -436,7 +436,8 @@ animation-charging-framerate = 750
 [module/mpd]
 type = internal/mpd
 
-host = 127.0.0.1
+; Config using env var `MPD_HOST`
+host = ${env:MPD_HOST:127.0.0.1}
 port = 6600
 
 ;format-online = <label-time>  <bar-progress>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
@@ -489,7 +490,7 @@ type = custom/script
 interval = 1
 
 format = <label>
-; format-padding = 2
+format-padding = 2
 format-prefix = "阮"
 format-prefix-foreground = ${color.green_spotify}
 format-underline = ${color.green_spotify}
