@@ -16,7 +16,7 @@ monitor_list=$(polybar --list-monitors)
 is_laptop=$(echo "$monitor_list" | grep 'eDP1')
 if [ ! -z "$is_laptop" ]
 then
-  polybar -q top 2>/dev/null & disown
+  polybar -q top 2>&1 | tee -a /tmp/polybar_top.log & disown
 fi
 
 # 1st external monitor (TOP-LEFT)
@@ -24,7 +24,7 @@ is_hdmi=$(echo "$monitor_list"|grep 'HDMI-0')
 if [ ! -z "$is_hdmi" ]
 then
   echo "Launching HDMI-0"
-  polybar -q top-HDMI0 2>/dev/null & disown
+  polybar -q top-HDMI0 2>&1 | tee -a /tmp/polybar_top_HDMI1.log & disown
 fi
 
 # 2nd external monitor (TOP-RIGHT)
@@ -32,5 +32,5 @@ is_dp=$(echo "$monitor_list" | grep 'DP-2')
 if [ ! -z "$is_dp" ]
 then
   echo "Launching DP-2"
-  polybar -q top-DP2 2>/dev/null & disown
+  polybar -q top-DP2 2>&1 | tee -a /tmp/polybar_top_DP2.log & disown
 fi
