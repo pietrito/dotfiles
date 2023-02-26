@@ -6,7 +6,7 @@
 # General aliases
 alias co="git checkout"
 alias cat="bat"
-alias diff="diff --color=auto"
+alias diff="diff --color=always"
 alias gui="xdg-open ."
 alias grep="grep --color=auto"
 alias htb="sudo openvpn --config ~/Hax/HTB/User420.ovpn"
@@ -19,7 +19,7 @@ alias ll="ls -lh"
 alias nano='vim'
 alias sv="sudoedit"
 alias sz="source ~/.zshrc"
-alias vz="vim ~/.zshrc"
+alias vz="nvim ~/.config/zsh/.zshrc"
 alias vn="vim ~/.vimrc"
 alias sn="shutdown now"
 
