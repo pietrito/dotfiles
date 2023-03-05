@@ -65,6 +65,8 @@ monitor-strict = false
 height = 24
 border-size = 3
 
+modules-right = date
+
 # modules-center = i3-window-HDMI1
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 [bar/top-DP2]
