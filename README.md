@@ -20,3 +20,9 @@ Install oh-my-zsh:
 
 Finally, reboot:
 `$ reboot`
+
+# TODO
+
+- [ ] Use `chezmoi.toml` to prompt for:
+  - [ ] Net interface(s)
+  - [ ] Monitor(s) name(s)
