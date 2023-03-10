@@ -11,12 +11,21 @@ do
   sleep 1
 done
 
-# Launch
+# Get the monitor list
 monitor_list=$(polybar --list-monitors)
+
+# Running on a laptop
 is_laptop=$(echo "$monitor_list" | grep 'eDP1')
 if [ ! -z "$is_laptop" ]
 then
   polybar -q top 2>&1 | tee -a /tmp/polybar_top.log & disown
+fi
+
+# Running inside a VM
+is_VM=$(echo "$monitor_list" | grep 'Virtual-1')
+if [ ! -z "$is_VM" ]
+then
+  polybar -q top-VM 2>&1 | tee -a /tmp/polybar_top.log & disown
 fi
 
 # 1st external monitor (TOP-LEFT)

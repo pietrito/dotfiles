@@ -43,7 +43,7 @@ inherit = bar-defaults
 font-0 = "Dina:style=Regular:pixelsize=17;3"
 font-1 = "Hack Nerd Font Mono:style=Regular:size=15;4"
 ; This bar is for the laptop screen itself
-monitor = ${env:MONITOR:eDP1}
+; monitor = ${env:MONITOR:eDP1}
 monitor-strict = true
 ; Override height (smaller screen)
 height = 27
@@ -52,6 +52,24 @@ border-size = 3
 # modules-center = i3-window-eDP1
 # TODO: system-usb-udev
 modules-right = memory fs-root xkeyboard xbacklight pulseaudio arch-updates bluetooth wifi wired battery date
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+[bar/top-VM]
+; Inherit defaults bar settings
+inherit = bar-defaults
+font-0 = "Dina:style=Regular:pixelsize=17;3"
+font-1 = "Hack Nerd Font Mono:style=Regular:size=15;4"
+; This bar is for the laptop screen itself
+; monitor = ${env:MONITOR:eDP1}
+monitor-strict = true
+; Override height (smaller screen)
+height = 27
+border-size = 3
+
+# modules-center = i3-window-eDP1
+# TODO: system-usb-udev
+modules-left = arch-menu workspaces
+modules-right = memory fs-root xkeyboard arch-updates wired date
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 [bar/top-HDMI0]

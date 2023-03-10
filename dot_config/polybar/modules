@@ -566,6 +566,34 @@ ramp-signal-4 = 
 ramp-signal-foreground = ${color.lightgrey}
 
 ; ---------------------------------------------------------
+[module/wired]
+type = internal/network
+interface = ${system.sys_eth_card}
+interval = 3.0
+
+format-connected = "<label-connected>"
+; format-connected-padding = 1
+format-connected-underline = #cc00cc
+format-connected-prefix = " "
+format-connected-prefix-foreground = #cc00cc
+; format-connected-prefix-offset = -6
+# Copy IP to clipboard
+label-connected = "%downspeed:8% %{F#cc00cc}|%{F-} %{A1:getip ens33 | xclip -selection clipboard:}%local_ip%%{A} "
+
+;format-disconnected = <label-disconnected>
+;format-disconnected-prefix = " "
+;format-disconnected-prefix-foreground = ${color.lightgrey}
+;label-disconnected = not connected
+;label-disconnected-foreground = #999
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${color.lightgrey}
+
+; ---------------------------------------------------------
 [module/vpn]
 type = custom/script
 interface = tun0
@@ -582,22 +610,6 @@ format-prefix = "嬨 "
 format-prefix-foreground = ${color.pink}
 
 ; label-disconnected = N/A
-
-; ---------------------------------------------------------
-[module/wired]
-type = internal/network
-interface = ${system.sys_eth_card}
-interval = 3.0
-
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${color.lightgrey}
-label-connected = %local_ip%
-
-;format-disconnected = <label-disconnected>
-;format-disconnected-prefix = " "
-;format-disconnected-prefix-foreground = ${color.lightgrey}
-;label-disconnected = not connected
-;label-disconnected-foreground = #999
 
 ; ---------------------------------------------------------
 [module/date]
