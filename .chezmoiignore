@@ -2,6 +2,7 @@ README.md
 TODO.md
 packages.lst
 services.lst
+as_root/
 
 {{- if ne .chezmoi.hostname "WIN-EDU-024"}}
 .config/awesome/
