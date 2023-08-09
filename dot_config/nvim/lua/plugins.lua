@@ -10,10 +10,9 @@ vim.cmd [[
 ]]
 
 return require('packer').startup(function(use)
+
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
-    -- use 'scrooloose/nerdtree'
 
     -- Project navigation
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = {{'nvim-lua/plenary.nvim'}}}
@@ -27,8 +26,7 @@ return require('packer').startup(function(use)
     use 'simrat39/rust-tools.nvim'
 
     -- rust-analyzer progress animation
-    use 'j-hui/fidget.nvim'
-
+    use { 'j-hui/fidget.nvim', tag = 'legacy' }
 
     -- Completion framework:
     use 'hrsh7th/nvim-cmp'
@@ -43,6 +41,9 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/vim-vsnip'
+
+    -- Transparent background
+    use 'xiyaowong/transparent.nvim'
 
     -- File layout
     use 'preservim/tagbar'
@@ -59,8 +60,11 @@ return require('packer').startup(function(use)
         config = function() require('Comment').setup() end
     }
 
-    -- OneDark theme
+    -- THEMES
     use 'navarasu/onedark.nvim'
+    use 'rebelot/kanagawa.nvim'
+    use 'sainnhe/everforest'
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- Speed up plugins loading
     use 'lewis6991/impatient.nvim'
@@ -71,8 +75,30 @@ return require('packer').startup(function(use)
     use 'rust-lang/rust.vim'
 
     use 'tpope/vim-surround' -- Add "", '', (),
+    -- use 'tpope/vim-fugitive'
+    use 'airblade/vim-gitgutter'
 
     -- Adds support for pretty TODO
-    use 'folke/todo-comments.nvim'
+    use {"folke/trouble.nvim", requires = { "nvim-tree/nvim-web-devicons" }}
+    use { "folke/todo-comments.nvim", requires = {"nvim-lua/plenary.nvim"}}
 
+    use {
+    "startup-nvim/startup.nvim",
+    requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+    config = function()
+      require"startup".setup()
+    end
+   }
+
+    -- NERDTree
+    use 'preservim/nerdtree'
+    use 'ryanoasis/vim-devicons'
+    use 'Xuyuanp/nerdtree-git-plugin'
+    -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+
+    -- Wakatime
+    -- use 'wakatime/vim-wakatime'
+    use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 end)
+

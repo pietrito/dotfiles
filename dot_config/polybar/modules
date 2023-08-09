@@ -124,10 +124,10 @@ icon-0 = 1;
 icon-1 = 2;2
 icon-2 = 3;3
 icon-3 = 4;4
-icon-4 = 5;
+icon-4 = 5;󰓇
 icon-5 = 6;6
 icon-6 = 7;7
-icon-7 = 8;
+icon-7 = 8;󰌋
 icon-8 = 9;9
 icon-9 = 10;
 ; icon-default =
@@ -246,13 +246,13 @@ card = ${system.sys_graphics_card}
 format = <ramp> <label>
 format-padding = 1
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
-ramp-5 = 
-ramp-6 = 
+ramp-0 = 󰃚
+ramp-1 = 󰃛
+ramp-2 = 󰃜
+ramp-3 = 󰃝
+ramp-4 = 󰃞
+ramp-5 = 󰃟
+ramp-6 = 󰃠
 
 ramp-foreground = #ffff66
 label = "%percentage%%"
@@ -268,7 +268,7 @@ format-volume-underline = ${color.brown}
 format-volume-padding = 1
 
 format-muted = <label-muted>
-format-muted-prefix = "ﱝ "
+format-muted-prefix = "󰸈 "
 format-muted-foreground = #777
 
 label-volume = "%percentage%%"
@@ -322,7 +322,7 @@ spacing = 2
 format-mounted = <label-mounted>
 format-mounted-underline = ${color.magenta}
 format-mounted-padding = 1
-format-mounted-prefix = " "
+format-mounted-prefix = "󰋊 "
 format-mounted-prefix-foreground = ${color.magenta}
 
 ; Available tokens:
@@ -340,7 +340,7 @@ label-mounted = "%used%/%total%"
 ; Available tags:
 ;   <label-unmounted> (default)
 format-unmounted-padding = 1
-format-unmounted-prefix = " "
+format-unmounted-prefix = "󱁌 "
 format-unmounted-prefix-foreground = ${color.magenta}
 format-unmounted = <label-unmounted>
 format-unmounted-underline = ${color.alert}
@@ -389,6 +389,8 @@ inherit = fs-base
 
 mount-0 = /
 
+label-mounted = %free%
+
 ; ---------------------------------------------------------
 [module/battery]
 type = internal/battery
@@ -436,8 +438,7 @@ animation-charging-framerate = 750
 [module/mpd]
 type = internal/mpd
 
-; Config using env var `MPD_HOST`
-host = ${env:MPD_HOST:127.0.0.1}
+host = 127.0.0.1
 port = 6600
 
 ;format-online = <label-time>  <bar-progress>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
@@ -445,8 +446,7 @@ port = 6600
 format-online = <label-song> <icon-random>
 format-online-spacing = 0
 format-online-underline = ${color.white}
-format-online-padding = 3
-format-online-prefix = " "
+format-online-prefix = "󰎄 "
 format-online-prefix-foreground = ${color.green_spotify}
 
 format-paused =
@@ -490,12 +490,12 @@ type = custom/script
 interval = 1
 
 format = <label>
-format-padding = 2
-format-prefix = "阮"
+; format-padding = 2
+format-prefix = "󰓇 "
 format-prefix-foreground = ${color.green_spotify}
 format-underline = ${color.green_spotify}
 
-exec = spotify_status.py -t 70 -q -p ','
+exec = spotify_status.py -t 40 -q -p ','
 ; exec = spotify_status.py -f '{artist}: {song}'
 
 ; ---------------------------------------------------------
@@ -518,7 +518,7 @@ type = internal/memory
 format = <label><bar-used>
 format-padding = 1
 format-underline = ${color.darkblue}
-format-prefix = ""
+format-prefix = "󰍛"
 format-prefix-foreground = ${color.darkblue}
 
 label = " %percentage_used%% "
@@ -566,34 +566,6 @@ ramp-signal-4 = 
 ramp-signal-foreground = ${color.lightgrey}
 
 ; ---------------------------------------------------------
-[module/wired]
-type = internal/network
-interface = ${system.sys_eth_card}
-interval = 3.0
-
-format-connected = "<label-connected>"
-; format-connected-padding = 1
-format-connected-underline = #cc00cc
-format-connected-prefix = " "
-format-connected-prefix-foreground = #cc00cc
-; format-connected-prefix-offset = -6
-# Copy IP to clipboard
-label-connected = "%downspeed:8% %{F#cc00cc}|%{F-} %{A1:getip ens33 | xclip -selection clipboard:}%local_ip%%{A} "
-
-;format-disconnected = <label-disconnected>
-;format-disconnected-prefix = " "
-;format-disconnected-prefix-foreground = ${color.lightgrey}
-;label-disconnected = not connected
-;label-disconnected-foreground = #999
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${color.lightgrey}
-
-; ---------------------------------------------------------
 [module/vpn]
 type = custom/script
 interface = tun0
@@ -612,6 +584,22 @@ format-prefix-foreground = ${color.pink}
 ; label-disconnected = N/A
 
 ; ---------------------------------------------------------
+[module/wired]
+type = internal/network
+interface = ${system.sys_eth_card}
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${color.lightgrey}
+label-connected = %local_ip%
+
+;format-disconnected = <label-disconnected>
+;format-disconnected-prefix = " "
+;format-disconnected-prefix-foreground = ${color.lightgrey}
+;label-disconnected = not connected
+;label-disconnected-foreground = #999
+
+; ---------------------------------------------------------
 [module/date]
 type = internal/date
 
@@ -621,9 +609,9 @@ format-underline = ${color.white}
 ; format-prefix = " "
 format-prefix-foreground= ${color.white}
 
-; label = %date%  %time%
+; label = %date% 󰥔 %time%
 label-foreground = #ffffff
-label = %{F#e60053}%{F-} %date% %{F#e60053}%{F-} %time%
+label = %{F#e60053}%{F-} %date% %{F#e60053}󰥔%{F-} %time%
 
 date = %A %d %b
 time = %H:%M:%S
@@ -637,7 +625,7 @@ type = internal/xkeyboard
 
 format-underline = #66ffff
 format-padding = 1
-format-prefix = " "
+format-prefix = "󰌌 "
 format-prefix-foreground = #66ffff
 
 label-layout = "%layout%"

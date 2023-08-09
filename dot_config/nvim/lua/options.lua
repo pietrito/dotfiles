@@ -37,6 +37,10 @@ set.number = true
 set.relativenumber = true
 --}}}
 
+--{{{ Use system clipboard
+set.clipboard = "unnamedplus"
+--}}}
+
 -- RustFmt on file save
 vim.g['rustfmt_autosave'] = true
 
@@ -73,3 +77,4 @@ set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
+vim.cmd("colorscheme gruvbox")

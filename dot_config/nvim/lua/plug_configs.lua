@@ -2,6 +2,7 @@ require('telescope').setup {
   pickers = {
     find_files = {
       -- theme = "dropdown"
+      git_status=true
     }
   }
 }
@@ -11,18 +12,14 @@ rt.setup({
     server = {
         on_attach = function(_, bufnr)
             -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            vim.keymap.set("n", "<C-d>", rt.hover_actions.hover_actions, { buffer = bufnr })
             -- Code action groups
             vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
         end,
-        -- Was added to fix a bug, might be able to delete later
-        settings = {
-            ["rust-analyzer"] = {
-                inlayHints = { locationLinks = false },
-            }
-        }
     },
 })
+
+require'rust-tools'.hover_actions.hover_actions()
 
 -- SETUP LSP
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -86,9 +83,18 @@ vim.api.nvim_set_option('updatetime', 300)
 -- Goto previous / next diagnostic warning / error
 -- Show inlay_hints more frequently
 vim.cmd([[
-set signcolumn=yes
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+  set signcolumn=yes
+  autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
+
+-- Doc: https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})
 
 -- Completion Plugin Setup
 local cmp = require'cmp'
@@ -159,17 +165,27 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
-require('onedark').setup {
-    style = 'warmer'
-}
-require('onedark').load()
 
 require('todo-comments').setup {
-    -- colors = {
-    --     error = { "DiagnosticError", "ErrorMsg", "#de5d68" },
-    --     warning = { "DiagnosticWarning", "WarningMsg", "#eeb927" },
-    --     info = { "DiagnosticInfo", "#57a5e5" },
-    --     hint = { "DiagnosticHint", "#bb70d2" },
-    --     default = { "Identifier", "#de5d68" },
-    -- },
+    colors = {
+        error = { "DiagnosticError", "ErrorMsg", "#de5d68" },
+        warning = { "DiagnosticWarning", "WarningMsg", "#eeb927" },
+        info = { "DiagnosticInfo", "#57a5e5" },
+        hint = { "DiagnosticHint", "#bb70d2" },
+        default = { "Identifier", "#de5d68" },
+    },
 }
+
+
+--[[ require("transparent").setup({
+  groups = { -- table: default groups
+    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+  },
+  extra_groups = {}, -- table: additional groups that should be cleared
+  exclude_groups = {}, -- table: groups you don't want to clear
+}) ]]
+
+-- vim.g.transparent_enabled=true

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+dl_output=$(/usr/bin/yt-dlp "${1}")
+# [ExtractAudio] Destination: /home/fanikulapo/Music/Inner_Circle_-_Massive_Girl.opus
+file_name=$(echo "$dl_output" | grep "\[ExtractAudio\] Destination: ${HOME}/Music" | sed 's/\[ExtractAudio\] Destination: //gp')
+
+basename=$(basename "$file_name")
+
+echo "BaseName : ${basename}"
+

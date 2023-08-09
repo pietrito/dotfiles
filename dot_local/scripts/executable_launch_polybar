@@ -11,21 +11,17 @@ do
   sleep 1
 done
 
-# Get the monitor list
+# Launch
 monitor_list=$(polybar --list-monitors)
-
-# Running on a laptop
 is_laptop=$(echo "$monitor_list" | grep 'eDP1')
 if [ ! -z "$is_laptop" ]
 then
-  polybar -q top 2>&1 | tee -a /tmp/polybar_top.log & disown
-fi
-
-# Running inside a VM
-is_VM=$(echo "$monitor_list" | grep 'Virtual-1')
-if [ ! -z "$is_VM" ]
-then
-  polybar -q top-VM 2>&1 | tee -a /tmp/polybar_top.log & disown
+  polybar -q top 2>/dev/null & disown
+  has_external=$(echo "$monitor_list" | grep 'DP1-3')
+  if [ ! -z "$has_external" ]
+  then
+    polybar -q top-DP1-3 2>/dev/null & disown
+  fi
 fi
 
 # 1st external monitor (TOP-LEFT)
@@ -33,7 +29,7 @@ is_hdmi=$(echo "$monitor_list"|grep 'HDMI-0')
 if [ ! -z "$is_hdmi" ]
 then
   echo "Launching HDMI-0"
-  polybar -q top-HDMI0 2>&1 | tee -a /tmp/polybar_top_HDMI1.log & disown
+  polybar -q top-HDMI0 2>/dev/null & disown
 fi
 
 # 2nd external monitor (TOP-RIGHT)
@@ -41,5 +37,5 @@ is_dp=$(echo "$monitor_list" | grep 'DP-2')
 if [ ! -z "$is_dp" ]
 then
   echo "Launching DP-2"
-  polybar -q top-DP2 2>&1 | tee -a /tmp/polybar_top_DP2.log & disown
+  polybar -q top-DP2 2>/dev/null & disown
 fi

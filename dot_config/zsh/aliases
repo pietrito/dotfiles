@@ -4,14 +4,10 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # General aliases
-alias co="git checkout"
 alias cat="bat"
-alias diff="diff --color=always"
+alias diff="diff --color=auto"
 alias gui="xdg-open ."
 alias grep="grep --color=auto"
-alias htb="sudo openvpn --config ~/Hax/HTB/User420.ovpn"
-alias htb-fortress="sudo openvpn --config ~/Hax/HTB/User420-fortress.ovpn"
-alias thm="sudo openvpn --config ~/Hax/THM/User420.ovpn"
 # alias lesss='less -S -I'
 alias ls="ls --color=auto"
 alias la="ls -lah"
@@ -19,7 +15,7 @@ alias ll="ls -lh"
 alias nano='vim'
 alias sv="sudoedit"
 alias sz="source ~/.zshrc"
-alias vz="nvim ~/.config/zsh/.zshrc"
+alias vz="vim ~/.zshrc"
 alias vn="vim ~/.vimrc"
 alias sn="shutdown now"
 
@@ -44,11 +40,14 @@ alias ..="cd .."
 
 # Letter Aliases
 alias b="bluetoothctl"
+alias c="codium ."
+alias d="diesel"
 alias e="evince"
 alias f="git fetch -vvv"
 alias g="git"
 alias l="ls"
 alias m="ncmpcpp"
+alias n="nmtui"
 alias p="ping 8.8.8.8"
 alias q="exit"
 alias r="ranger"
@@ -56,3 +55,39 @@ alias s="git status --short"
 alias v="nvim"
 alias z="zathura"
 
+# Cargo aliases
+alias cr="cargo run"
+alias ct="cargo test"
+alias cw="cargo watch -c -x \"clippy --tests\""
+
+# Docker aliases
+alias dc="sudo docker-compose"
+alias dup="sudo docker-compose up"
+alias dupd="sudo docker-compose up -d"
+alias ddown="sudo docker-compose down"
+
+# Diesel aliases
+alias dml="diesel migration list"
+alias dmr="diesel migration redo"
+
+# Git aliases
+alias ga="git add"
+alias gal="git add ."
+alias gb="git --no-pager branch"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gcam="git commit -am"
+alias gco="git checkout"
+alias gd="git diff"
+alias gf="git fetch -vvv"
+alias gp="git push"
+alias gl="git pull"
+alias glo="git --no-pager log --oneline --decorate -n 25"
+alias gro="git remote show origin"
+alias gs="git status"
+
+# Watson aliases
+alias we="watson edit"
+alias ws="watson status"
+alias wst="watson start"
+alias wsp="watson stop"

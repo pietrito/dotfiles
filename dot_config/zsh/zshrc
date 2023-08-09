@@ -1,4 +1,4 @@
-nitch
+neofetch
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -7,14 +7,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"  ]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path of Oh My Zsh installation
-export ZSH=$HOME/.config/zsh/oh-my-zsh
-
 # Set up the prompt
-# [[ $- != *i* ]] && return
+[[ $- != *i* ]] && return
 
-# Vim behavior (using oh-my-zsh plugin below)
-# bindkey -v
+# Vim behavior
+bindkey -v
 export KEYTIMEOUT=1
 
 # Enable searching through history
@@ -22,22 +19,12 @@ bindkey '^R' history-incremental-pattern-search-backward
 
 # Environment variables
 export LESSHISTFILE=/dev/null
-# LESS="-R -I"; export LESS
+LESS="-R -I"; export LESS
 export TERM="xterm-256color"
 
-# OH-MY-ZSH CONFIG
-# Show update reminders
-zstyle ':omz:update' mode reminder
-# Check for update every 7 days
-zstyle ':omz:update' frequency 7
+# Config ZSH
 # zstyle :omz:plugins:ssh-agent agent-forwarding on
-# Do not load any keys at startup
-zstyle :omz:plugins:ssh-agent lazy yes
-# ssh-agent lasts 2h max
-zstyle :omz:plugins:ssh-agent lifetime 2h
-# quiet ssh-agent (because of theme)
-zstyle :omz:plugins:ssh-agent quiet yes
-# improved case insensitive completion ?
+# zstyle :omz:plugins:ssh-agent lifetime 2h
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 # Use modern completion system
 autoload -Uz compinit
@@ -50,29 +37,22 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/zsh_history
 
-# ZSH Theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Plugins (TODO: There are always new/better plugins to fetch)
-# TODO: fzf ?
+# Plugins (TODO)
 plugins=(
   colored-man-pages
   zsh-256color
-  ssh-agent
-  thefuck
-  vi-mode
-  zsh-autosuggestions
-
-  # Must be last:
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
 )
-# fast-syntax-highlighting
 
-# Launch Oh My Zsh and load plugins/themes from it
-source $ZSH/oh-my-zsh.sh
+# PLUGINS
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+# THEME
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Load environment variables
-# [[ -f ~/.profile ]] && . ~/.profile
+[[ -f ~/.profile ]] && . ~/.profile
 
 # Load aliases and functions
 [[ -f ~/.config/zsh/aliases ]] && . ~/.config/zsh/aliases
@@ -85,6 +65,9 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
 
