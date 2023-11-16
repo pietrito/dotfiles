@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # This script is used to change the background to a new one.
@@ -6,9 +6,33 @@
 #
 # Note: Chooses a random monitor between all the active ones.
 #
+# export DISPLAY=:0
+# TMP_XAUTHORITY=$(mktemp)
+# cp "$XAUTHORITY" "$TMP_XAUTHORITY"
+
+# Set the XAUTHORITY variable to point to the temporary copy
+# export XAUTHORITY="$TMP_XAUTHORITY"
+
+# export XAUTHORITY=$(xauth info | grep -oP '(?<=Authority file: ).*')
+
+# echo "val: $XAUTHORITY"
+# XAUTHORITY=$(xauth info | grep -oP '(?<=Authority file: ).*')
+# echo "val12: $XAUTHORITY"
+# echo "Here"
+# xauth info
+# echo "laa"
+
+XAUTHORITY_PATH=$(find /tmp -maxdepth 1 -name 'xauth_*' -print -quit)
+
+if [ -n "$XAUTHORITY_PATH" ]; then
+    export XAUTHORITY="$XAUTHORITY_PATH"
+else
+    echo "Xauthority file not found."
+    exit 1
+fi
 
 # Path to the wallpapers
-folder="${HOME}/.local/share/wallpapers/"
+folder="/home/fanikulapo/.local/share/wallpapers/"
 
 # If given an existing file in argument, add it to the wallpaper folder and we'll use this one.
 if [ -f "$1" ] && [ ! -f "${folder}${1}" ]
@@ -28,7 +52,9 @@ xwallpaper --output "$monitor" --maximize $to_display
 
 # Save current file name for potential removal
 # TODO: Handle multiple monitor ?
-echo "$to_display" > ${HOME}/.local/scripts/.currentbg
+echo "$to_display" > /home/fanikulapo/.local/scripts/.currentbg
+
+# rm "$TMP_XAUTHORITY"
 
 # Exit
 exit 0
