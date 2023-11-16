@@ -353,7 +353,7 @@ label-unmounted-foreground = #55
 
 ; Default: 90
 ; New in version 3.6.0
-warn-percentage = 90
+warn-percentage = 95
 
 ; Format used when mountpoint %percentage_used% reaches warn-percentage
 ; If not defined, format-mounted is used instead.
@@ -363,7 +363,7 @@ warn-percentage = 90
 ;   <bar-used>
 ;   <ramp-capacity>
 ; New in version 3.6.0
-format-warn-padding = 1
+format-warn-padding = 0
 format-warn = <label-warn>
 format-warn-underline = ${color.alert}
 
@@ -378,7 +378,7 @@ format-warn-underline = ${color.alert}
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
 ; New in version 3.6.0
-label-warn =  %mountpoint%: FULL
+label-warn = "  %mountpoint%: FULL "
 label-warn-foreground = ${color.black}
 label-warn-background = ${color.alert}
 
@@ -484,13 +484,32 @@ toggle-off-foreground = ${color.lightgrey}
 ;bar-progress-empty-font = 3
 
 ; ---------------------------------------------------------
+[module/mpds]
+type = custom/script
+interval = 1
+tail = true
+
+custom/script-foreground = true
+format = <label>
+format-prefix = "󰎄 "
+format-padding = 1
+format-underline = ${color.green_spotify}
+format-prefix-foreground = ${color.green_spotify}
+
+exec = ~/.local/scripts/mpcer
+
+;  click-left = mpc toggle
+; click-right = mpc next
+
+; ---------------------------------------------------------
+
 
 [module/spotify]
 type = custom/script
-interval = 1
+; interval = 1
 
 format = <label>
-; format-padding = 2
+format-padding = 1
 format-prefix = "󰓇 "
 format-prefix-foreground = ${color.green_spotify}
 format-underline = ${color.green_spotify}
@@ -515,7 +534,8 @@ click-left = rofi -show drun
 [module/memory]
 type = internal/memory
 
-format = <label><bar-used>
+format = <label>
+; format = <label><bar-used>
 format-padding = 1
 format-underline = ${color.darkblue}
 format-prefix = "󰍛"
@@ -566,22 +586,21 @@ ramp-signal-4 = 
 ramp-signal-foreground = ${color.lightgrey}
 
 ; ---------------------------------------------------------
-[module/vpn]
+[module/wireguard]
 type = custom/script
-interface = tun0
-interval = 3.0
+exec = ~/.local/scripts/polybar/wireguard
+tail = false
+interval = 1
+# If activating the toggle, need to add commands to sudoers
+# click-left = ~/.local/scripts/polybar/wireguard --toggle &
 
-exec = getip ${interface}
+format-prefix = " "
+format-prefix-foreground = ${color.lightgreen}
 
-label = "%output%"
+format-padding = 1
+format-underline = ${color.lightgreen}
 
-; format = "<label>"
-; format-padding = 2
-format-underline = ${color.pink}
-format-prefix = "嬨 "
-format-prefix-foreground = ${color.pink}
-
-; label-disconnected = N/A
+label = %output%
 
 ; ---------------------------------------------------------
 [module/wired]
@@ -613,7 +632,8 @@ format-prefix-foreground= ${color.white}
 label-foreground = #ffffff
 label = %{F#e60053}%{F-} %date% %{F#e60053}󰥔%{F-} %time%
 
-date = %A %d %b
+date = %a %d %b
+date-alt = %A %d %b
 time = %H:%M:%S
 interval = 1.0
 

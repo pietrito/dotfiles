@@ -33,7 +33,7 @@ tray-background = ${color.background}
 tray-foreground = ${color.foreground}
 
 ; Common modules for all bars
-modules-left = arch-menu workspaces mpd spotify
+modules-left = arch-menu workspaces spotify mpds
 # modules-right = memory xkeyboard pulseaudio arch-updates bluetooth wifi wired battery date
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -51,7 +51,7 @@ border-size = 3
 
 # modules-center = i3-window-eDP1
 # TODO: system-usb-udev
-modules-right = memory fs-root xkeyboard xbacklight pulseaudio arch-updates bluetooth wifi wired battery date
+modules-right = memory fs-root xbacklight pulseaudio arch-updates bluetooth wifi wired battery date
 
 [bar/top-DP1-3]
 ; Inherit defaults bar settings
