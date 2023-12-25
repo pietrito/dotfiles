@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=dwm
+Comment=Suckless window manager
+TryExec=/usr/local/bin/dwm
+Exec=/usr/local/bin/dwm
+Type=Application
