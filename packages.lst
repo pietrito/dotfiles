@@ -9,13 +9,7 @@ dina-font
 dmenu
 dunst
 firefox
-firefox-dark-reader
-firefox-extension-https-everywhere
-firefox-extension-privacybadger
-firefox-ublock-origin
-firefox-umatrix
 keepassxc
-libnotify
 mlocate
 mpd
 ncdu
@@ -50,7 +44,7 @@ xorg-xclipboard
 xorg-xinit
 xorg-xrandr
 xwallpaper
-youtube-dl
+yt-dlp
 zathura
 zathura-pdf-mupdf
 zip
