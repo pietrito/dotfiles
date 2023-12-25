@@ -43,14 +43,14 @@ stat=$(mpc | grep -io "paused\|playing" | sed -e "s/paused/0/g;s/playing/1/g")
 
 if [ -z $stat ]
 then
-  echo -n ""
+  echo ""
 elif [ $stat -eq 1 ]
 then
-  echo -n " $(mpc | head -n 1)"
+  echo -n "$(mpc | head -n 1)"
 elif [ $stat -eq 0 ]
 then
-  echo -n ""
+  echo ""
 else
-  echo -n ""
+  echo ""
 fi
 

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PLAYLIST_NAME="random-all"
+
+if [ -f "~/.config/mpd/playlists/${PLAYLIST_NAME}.m3u" ]
+then
+  rm "~/.config/mpd/playlists/${PLAYLIST_NAME}.m3u"
+fi
+
+
+# Re-generate the random playlist
+mpc clear
+mpc listall | mpc add
+mpc shuffle
+mpc save random-all
+
+mpc clear
+mpc listall | mpc add
+

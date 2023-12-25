@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Downloads a YouTube song using `yt-dlp`
+#
+video_url=$(xclip -selection clipboard -o)
+# echo "URL: $video_url"
+
+video_id=$(echo "${video_url}" | sed -n 's/.*v=\([^&]*\).*/\1/p')
+# echo "video_id: $video_id"
+
+prompt="Download [${video_id}] ?"
+# echo "Prompt: $prompt"
+
+case "$(printf " Yes\n No\n" | dmenu -i -p "${prompt}")" in
+  ' Yes') alacritty -e bash -c "yt-dlp ${video_url}; read -p 'Press enter to continue'" ;;
+  *) exit 1 ;;
+esac

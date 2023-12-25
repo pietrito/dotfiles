@@ -135,4 +135,4 @@ try:
                                      album=album), trunclen + 4))
 
 except Exception as e:
-        print(e)
+    pass

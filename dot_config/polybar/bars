@@ -25,15 +25,9 @@ border-color = #00000000
 
 ; Fonts
 
-; System tray icons
-tray-position = right
-tray-padding = 4
-tray-maxsize = 16
-tray-background = ${color.background}
-tray-foreground = ${color.foreground}
 
 ; Common modules for all bars
-modules-left = arch-menu workspaces spotify mpds
+modules-left = arch-menu workspaces spotify mpd
 # modules-right = memory xkeyboard pulseaudio arch-updates bluetooth wifi wired battery date
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -51,7 +45,7 @@ border-size = 3
 
 # modules-center = i3-window-eDP1
 # TODO: system-usb-udev
-modules-right = memory fs-root xbacklight pulseaudio arch-updates bluetooth wifi wired battery date
+modules-right = memory fs-root xbacklight pulseaudio arch-updates bluetooth wifi wired battery date tray
 
 [bar/top-DP1-3]
 ; Inherit defaults bar settings

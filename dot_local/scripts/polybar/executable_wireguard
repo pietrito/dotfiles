@@ -1,0 +1,47 @@
+#!/bin/sh
+
+set -e
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+connection_status() {
+    # if [ -f "$config" ]; then
+    echo "bef"
+    connection=$(sudo /usr/bin/wg show wg0 | head -n 1 | awk '{print $NF }')
+    echo "aft"
+
+    if [ "$connection" = "$config_name" ]; then
+        echo "1"
+    else
+        echo "2"
+    fi
+    # else
+        # echo "3"
+    # fi
+}
+
+config="/etc/wireguard/wg0.conf"
+# config_name=$(basename "${config%.*}")
+config_name="wg0"
+
+case "$1" in
+# --toggle)
+    # if [ "$(connection_status)" = "1" ]; then
+        # sudo wg-quick down "$config" 2>/dev/null
+    # else
+        # sudo wg-quick up "$config" 2>/dev/null
+    # fi
+    # ;;
+*)
+    ret=$(connection_status)
+    if [ "$ret" = "1" ]; then
+        echo -e "${GREEN}${config_name}${NC}"
+    elif [ "$ret" = "3" ]; then
+        echo -e "#3 Config not found!"
+    else
+        echo -e "${RED}DOWN${NC}"
+    fi
+    ;;
+esac

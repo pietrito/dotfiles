@@ -1,6 +1,17 @@
 ;; vim:filetype=dosini
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
+[module/tray]
+type = internal/tray
+; System tray ico1s
+tray-position = right
+tray-padding = 1
+; tray-maxsize = 16
+; tray-size = 40%
+tray-background = ${color.background}
+tray-foreground = ${color.foreground}
+format-underline = ${color.white}
+
 [module/cpu]
 type = internal/cpu
 
@@ -438,14 +449,15 @@ animation-charging-framerate = 750
 [module/mpd]
 type = internal/mpd
 
-host = 127.0.0.1
+; host = 127.0.0.1
+host = ${env:MPD_HOST:localhost}
 port = 6600
 
 ;format-online = <label-time>  <bar-progress>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>
 
 format-online = <label-song> <icon-random>
 format-online-spacing = 0
-format-online-underline = ${color.white}
+format-online-underline = ${color.green_spotify}
 format-online-prefix = "󰎄 "
 format-online-prefix-foreground = ${color.green_spotify}
 
@@ -522,11 +534,11 @@ exec = spotify_status.py -t 40 -q -p ','
 ; Shows the beautiful arch logo and launch dmenu on click
 type = custom/text
 
-content = ""
-content-padding = 3
-content-background = ${color.label_background}
-content-foreground = ${color.theme_accent}
-content-underline = ${color.theme_accent}
+format = ""
+format-padding = 1
+format-background = ${color.label_background}
+format-foreground = ${color.theme_accent}
+format-underline = ${color.theme_accent}
 ; Execute dmenu on click using rofi
 click-left = rofi -show drun
 
