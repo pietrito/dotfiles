@@ -1,0 +1,29 @@
+# Download archive
+# --download-archive /home/user420/Music/archive.dl
+
+# Output directory
+--output '/home/$USER/Music/%(title)s.%(ext)s'
+
+# Restrict filenames to ASCII chars
+--restrict-filenames
+
+# Take the best quality
+--audio-quality 0
+
+# Take the best format
+--audio-format best
+
+# Prevent continuing downloads (no need)
+# --no-continue
+
+# Embed the thumbnail in the audio as cover art
+--embed-thumbnail
+
+# Try to autofix the file, warn if fails
+--fixup detect_or_warn
+
+# Force IPv4
+--force-ipv4
+
+# Extract audio !
+-x
