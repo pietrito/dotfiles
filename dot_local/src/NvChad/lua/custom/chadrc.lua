@@ -4,7 +4,7 @@ local M = {}
 
 M.ui = {
   -- Theme
-  theme = 'monekai',
+  theme = 'gruvbox',
 
   -- Dashboard page
   nvdash = {

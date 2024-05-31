@@ -19,7 +19,7 @@ local plugins = {
     ft = "rust",
     init = function ()
       vim.g.rustfmt_autosave = 1
-      vim.g.rustfmt_options = '--edition 2021'
+      -- vim.g.rustfmt_options = '--edition 2021'
     end
   },
   {
@@ -78,6 +78,16 @@ local plugins = {
   {
     "folke/trouble.nvim",
     lazy = false
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function ()
+      require("catppuccin").setup({
+        flavour = "latte", -- latte, frappe, macchiato, mocha
+      })
+    end
   }
 }
 

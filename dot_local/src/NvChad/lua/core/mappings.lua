@@ -130,18 +130,26 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
-    ["gD"] = {
+    --[[ ["gD"] = {
       function()
         vim.lsp.buf.declaration()
       end,
       "LSP declaration",
-    },
+    }, ]]
 
     ["gd"] = {
       function()
         vim.lsp.buf.definition()
       end,
-      "LSP definition",
+      "LSP definition (in current buffer)",
+    },
+
+    ["gD"] = {
+      function()
+        vim.cmd("vsp")
+        vim.lsp.buf.definition()
+      end,
+      "LSP definition (in vertical split)",
     },
 
     ["K"] = {
