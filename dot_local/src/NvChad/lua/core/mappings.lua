@@ -16,7 +16,7 @@ M.general = {
   },
 
   n = {
-    ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
+    ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
@@ -130,26 +130,18 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
-    --[[ ["gD"] = {
+    ["gD"] = {
       function()
         vim.lsp.buf.declaration()
       end,
       "LSP declaration",
-    }, ]]
+    },
 
     ["gd"] = {
       function()
         vim.lsp.buf.definition()
       end,
-      "LSP definition (in current buffer)",
-    },
-
-    ["gD"] = {
-      function()
-        vim.cmd("vsp")
-        vim.lsp.buf.definition()
-      end,
-      "LSP definition (in vertical split)",
+      "LSP definition",
     },
 
     ["K"] = {
@@ -201,7 +193,7 @@ M.lspconfig = {
       "LSP references",
     },
 
-    ["<leader>f"] = {
+    ["<leader>lf"] = {
       function()
         vim.diagnostic.open_float { border = "rounded" }
       end,

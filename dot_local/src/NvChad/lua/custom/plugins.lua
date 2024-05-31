@@ -3,36 +3,59 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "rust-analyzer"
+        "rust-analyzer",
       }
     }
   },
   {
+    "williamboman/mason-lspconfig.nvim",
+
+    opts = {
+      ensure_installed = {
+        "rust-analyzer"
+      }
+    },
+  },
+
+  {
     "neovim/nvim-lspconfig",
+    lazy = false,
     config = function ()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end
   },
+
   {
     "rust-lang/rust.vim",
     ft = "rust",
     init = function ()
       vim.g.rustfmt_autosave = 1
+      vim.g.rustfmt_emit_files = 1
+			vim.g.rustfmt_fail_silently = 0
+			vim.g.rust_clip_command = 'wl-copy'
       -- vim.g.rustfmt_options = '--edition 2021'
     end
   },
+
   {
-    "simrat39/rust-tools.nvim",
-    ft = "rust",
-    dependencies = "neovim/nvim-lspconfig",
-    opts = function ()
-      return require "custom.configs.rust-tools"
-    end,
-    config = function(_, opts)
-      require('rust-tools').setup(opts)
-    end
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        -- defaults
+        "vim",
+        "lua",
+
+        -- useful
+        "json",
+
+        -- dev
+        "rust",
+        "python",
+      },
+    }
   },
+
   {
     "saecki/crates.nvim",
     ft = {"toml"},
@@ -61,7 +84,7 @@ local plugins = {
   {
      "iamcco/markdown-preview.nvim",
      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-     ft = { "markdown" },
+ft = { "markdown" },
      build = function() vim.fn["mkdp#util#install"]() end,
   },
   {
@@ -80,14 +103,30 @@ local plugins = {
     lazy = false
   },
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+    lazy = false
+  },
+  --[[ {
+    "LunarVim/breadcrumbs.nvim",
+    dependencies = { "SmiteshP/nvim-navic" },
+    config = function()
+      require("nvim-navic").setup {
+        lsp = {
+            auto_attach = true,
+        },
+      }
+
+      require("breadcrumbs").setup()
+    end,
+
+    lazy = false
+  }, ]]
+  {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000,
-    config = function ()
-      require("catppuccin").setup({
-        flavour = "latte", -- latte, frappe, macchiato, mocha
-      })
-    end
+    flavour = "mocha"
   }
 }
 

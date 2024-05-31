@@ -21,13 +21,25 @@ vim.keymap.set('n', "<leader>ft", ":FloatermNew --name=nvimfloat --height=0.8 --
 vim.keymap.set('n', "t", ":FloatermToggle nvimfloat<CR>")
 vim.keymap.set('t', "<Esc>", "<C-\\><C-n>:q<CR>")
 
+-- Switch between two most recent buffers
+-- vim.keymap.set('n', "<leader><leader>", "<c-^>")
+-- vim.api.nvim_set_keymap('n', '<leader><leader>', '<C-^>', { noremap = true, silent = true })
+
+-- TODO comments (jump to next/previous todo)
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
 
 -- Persistence: restore the session for the current directory
-vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
+vim.keymap.set("n", "<leader>qs", '<cmd>lua require("persistence").load()<cr>')
 -- Persistence: restore the last session
-vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
+vim.keymap.set("n", "<leader>ml", '<cmd>lua require("persistence").load({ last = true })<cr>')
 -- Persistence: stop => session won't be saved on exit
-vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+vim.keymap.set("n", "<leader>qd", '<cmd>lua require("persistence").stop()<cr>')
 
 local M = {}
 
